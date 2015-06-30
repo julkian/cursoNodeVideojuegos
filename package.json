@@ -1,0 +1,22 @@
+{
+  "name": "curso-node-videojuegos",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "http-server ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/julkian/cursoNodeVideojuegos.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/julkian/cursoNodeVideojuegos/issues"
+  },
+  "dependencies": {
+    "http-server": "~0.8.0"
+  }
+}
