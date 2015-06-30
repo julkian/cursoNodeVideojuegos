@@ -15,7 +15,7 @@ function KeyboardJS (debug) {
   document.addEventListener("keyup", function (evt) {
   	//unpressing key
   	scope.keys[evt.keyCode] = false;
-  	if ( scop.debug) console.log('-- keyIsUp ASCII('+evt.keyCode+') CHAR('+String.fromCharCode(evt.keyCode)+')');
+  	if (scope.debug) console.log('-- keyIsUp ASCII('+evt.keyCode+') CHAR('+String.fromCharCode(evt.keyCode)+')');
   });
   if (scope.debug) console.log("keyboardJS inited", "keyboardJS");
 }

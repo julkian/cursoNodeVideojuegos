@@ -11,8 +11,18 @@
           // The renderer will create a canvas element for you that you can then insert into the DOM.
           document.body.appendChild(renderer.view);
 
+
           // You need to create a root container that will hold the scene you want to draw.
           var stage = new PIXI.Container();
+
+          //creating coins
+          var coinTexture = new PIXI.Texture.fromImage('coin.png');
+          var coin = new PIXI.Sprite(coinTexture);
+          coin.position.x = 150;
+          coin.position.y = 150;
+          coin.scale.x = 0.5;
+          coin.scale.y = 0.5;
+          stage.addChild(coin);
 
           // This creates a texture from a 'bunny.png' image.
           var bunnyTexture = PIXI.Texture.fromImage('bunny.png');
@@ -40,8 +50,8 @@
           	console.log("("+evt.screenX+", "+evt.screenY+")");
           	if ( !clicked ) {
           		clicked = true;
-          		mouseX = evt.screenX;
-          		mouseY = evt.screenY;
+          		mouseX = evt.pageX;
+          		mouseY = evt.pageY;
           	}
           	console.log("despues");
           	console.log("("+evt.screenX+", "+evt.screenY+")");
