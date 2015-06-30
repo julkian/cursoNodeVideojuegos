@@ -16,13 +16,18 @@
           var stage = new PIXI.Container();
 
           //creating coins
+          var coins = []
           var coinTexture = new PIXI.Texture.fromImage('coin.png');
-          var coin = new PIXI.Sprite(coinTexture);
-          coin.position.x = 150;
-          coin.position.y = 150;
-          coin.scale.x = 0.5;
-          coin.scale.y = 0.5;
-          stage.addChild(coin);
+          for (i = 0; i < 10; ++i) {
+          	var coin = new PIXI.Sprite(coinTexture);
+            coin.position.x = Math.random()*800;
+            coin.position.y = Math.random()*600;
+            coin.scale.x = 0.5;
+            coin.scale.y = 0.5;
+            coin.anchor.set(0.5,0.5)
+            coins.push(coin);
+          	stage.addChild(coin);
+          }
 
           // This creates a texture from a 'bunny.png' image.
           var bunnyTexture = PIXI.Texture.fromImage('bunny.png');
@@ -35,6 +40,8 @@
           bunny.scale.x = 1;
           bunny.scale.y = 1;
 
+          bunny.anchor.set(0.5,0.5);
+
           // Add the bunny to the scene we are building.
           stage.addChild(bunny);
 
@@ -46,15 +53,11 @@
           	mouseX,
           	mouseY;
           document.addEventListener("click", function (evt) {
-          	console.log("antes");
-          	console.log("("+evt.screenX+", "+evt.screenY+")");
           	if ( !clicked ) {
-          		clicked = true;
+          		//clicked = true;
           		mouseX = evt.pageX;
           		mouseY = evt.pageY;
           	}
-          	console.log("despues");
-          	console.log("("+evt.screenX+", "+evt.screenY+")");
           });
 
           // kick off the animation loop (defined below)
@@ -84,6 +87,11 @@
               		clicked = false;
               	}
               }
+              coins.forEach( function (c) {
+              	var sumRadius = bunny.width/2 + c.width/2; //both sprites are square-like
+              	var d = Math.sqrt(Math.pow(bunny.position.x - c.position.x, 2) + Math.pow(bunny.position.y - c.position.y, 2)); //distance between bunny and a coin
+              	if (sumRadius > d) stage.removeChild(c);
+              });
 
               // this is the main render call that makes pixi draw your container and its children.
               renderer.render(stage);
