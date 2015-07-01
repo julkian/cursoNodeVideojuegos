@@ -37,8 +37,8 @@
           bunny.position.x = 400;
           bunny.position.y = 300;
 
-          bunny.scale.x = 1;
-          bunny.scale.y = 1;
+//          bunny.scale.x = 2;
+//          bunny.scale.y = 2;
 
           bunny.anchor.set(0.5,0.5);
 
@@ -87,10 +87,16 @@
               		clicked = false;
               	}
               }
+              var i = 0;
               coins.forEach( function (c) {
               	var sumRadius = bunny.width/2 + c.width/2; //both sprites are square-like
               	var d = Math.sqrt(Math.pow(bunny.position.x - c.position.x, 2) + Math.pow(bunny.position.y - c.position.y, 2)); //distance between bunny and a coin
-              	if (sumRadius > d) stage.removeChild(c);
+              	if (sumRadius > d) {
+                  stage.removeChild(c);
+                  coins.splice(i,1);  //removing from array 
+                }
+
+                ++i;
               });
 
               // this is the main render call that makes pixi draw your container and its children.
